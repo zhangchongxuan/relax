@@ -1,11 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        mConfig {
+            keyAlias 'map.key'
+            keyPassword 'zhangcx0123.'
+            storeFile file('/Volumes/移动硬盘/个人资料/mysign.keystore')
+            storePassword 'zhangcx523.'
+        }
+    }
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.zhangcx.relax"
+        applicationId "com.zhangcx"//部分包名
         minSdkVersion 17
         targetSdkVersion 26
+        buildToolsVersion '26.0.2'
+
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -14,12 +24,25 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.mConfig
+            applicationIdSuffix "relax"//包名后缀+relax     com.zhangcx.relax
+
         }
+        debug {
+            signingConfig signingConfigs.mConfig
+            applicationIdSuffix "relaxdebug"//包名后缀+debug    com.zhangcx.relaxdebug
+
+            //是否输出日志
+            buildConfigField 'boolean', 'IS_DEBUG', 'false'
+
+        }
+    }
+    productFlavors {
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
