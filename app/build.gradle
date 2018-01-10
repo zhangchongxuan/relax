@@ -16,8 +16,8 @@ android {
         targetSdkVersion 26
         buildToolsVersion '26.0.2'
 
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -27,13 +27,24 @@ android {
             signingConfig signingConfigs.mConfig
             applicationIdSuffix "relax"//包名后缀+relax     com.zhangcx.relax
 
+            //是否输出日志
+            buildConfigField 'boolean', 'IS_DEBUG', 'false'
+            //对应服务器地址
+            buildConfigField 'String', 'SERVER_URL0', '"http://www.release0.com"'
+            buildConfigField 'String', 'SERVER_URL1', '"http://www.release1.com"'
+
+
+
         }
         debug {
             signingConfig signingConfigs.mConfig
             applicationIdSuffix "relaxdebug"//包名后缀+debug    com.zhangcx.relaxdebug
 
             //是否输出日志
-            buildConfigField 'boolean', 'IS_DEBUG', 'false'
+            buildConfigField 'boolean', 'IS_DEBUG', 'true'
+            //对应服务器地址
+            buildConfigField 'String', 'SERVER_URL0', '"http://www.debug0.com"'
+            buildConfigField 'String', 'SERVER_URL1', '"http://www.debug1.com"'
 
         }
     }
@@ -48,4 +59,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile 'com.orhanobut:logger:2.1.1'
+
 }
