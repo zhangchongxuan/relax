@@ -10,14 +10,17 @@ android {
         }
     }
     compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+
     defaultConfig {
         applicationId "com.zhangcx"//部分包名
         minSdkVersion 17
         targetSdkVersion 26
-        buildToolsVersion '26.0.2'
-
         versionCode 2
         versionName "1.2"
+
+
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -34,7 +37,6 @@ android {
             buildConfigField 'String', 'SERVER_URL1', '"http://www.release1.com"'
 
 
-
         }
         debug {
             signingConfig signingConfigs.mConfig
@@ -48,7 +50,34 @@ android {
 
         }
     }
+
+    //代码差异化配置,比如说测试生产不同的鉴权文件代码,颜色显示不同渠道等(以资源风格为例)
+
+    //3.0之后必须加 flavorDimensions
+    flavorDimensions "res"
+
     productFlavors {
+        free {
+            dimension "res"
+            applicationIdSuffix "free"
+            buildConfigField 'String','which','"免费的"'
+        }
+        paid {
+            dimension "res"
+            applicationIdSuffix "paid"
+            buildConfigField 'String','which','"收费的"'
+
+        }
+    }
+
+    sourceSets {
+        free {
+            res.srcDirs = ['flavors/free/res']
+        }
+        paid {
+            res.srcDirs = ['flavors/paid/res']
+
+        }
     }
 }
 
@@ -60,5 +89,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'com.orhanobut:logger:2.1.1'
-
 }
