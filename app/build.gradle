@@ -25,7 +25,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.mConfig
             applicationIdSuffix "relax"//包名后缀+relax     com.zhangcx.relax
@@ -60,12 +60,12 @@ android {
         free {
             dimension "res"
             applicationIdSuffix "free"
-            buildConfigField 'String','which','"免费的"'
+            buildConfigField 'String', 'which', '"免费的"'
         }
         paid {
             dimension "res"
             applicationIdSuffix "paid"
-            buildConfigField 'String','which','"收费的"'
+            buildConfigField 'String', 'which', '"收费的"'
 
         }
     }
@@ -78,6 +78,10 @@ android {
             res.srcDirs = ['flavors/paid/res']
 
         }
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
