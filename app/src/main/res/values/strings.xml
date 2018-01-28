@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">relax</string>
+
+
+    <string name="OneFragment">One</string>
+    <string name="TwoFragment">Two</string>
+    <string name="ThreeFragment">Three</string>
+    <string name="FourFragment">Four</string>
 </resources>

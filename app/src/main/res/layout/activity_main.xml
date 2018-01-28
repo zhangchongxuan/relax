@@ -1,37 +1,31 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <data >
-        <variable
-            name="user"
-            type="com.zhangcx.relax.entity.UserEntity"/>
-    </data>
+    <include layout="@layout/toobar_layout"/>
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/realcontent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@{user.userName}" />
+    </FrameLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+    <android.support.v4.app.FragmentTabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            android:text="@{user.age}" />
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_gravity="center_horizontal"
+        </FrameLayout>
 
-            android:textSize="10sp"
-            android:text="@{user.address}" />
+    </android.support.v4.app.FragmentTabHost>
 
-    </LinearLayout>
-</layout>
+</LinearLayout>
