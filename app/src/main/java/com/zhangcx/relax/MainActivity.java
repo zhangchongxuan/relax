@@ -10,6 +10,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 
+import com.zhangcx.mylibrary.utils.PermissionUtil;
 import com.zhangcx.relax.base.BaseActivity;
 import com.zhangcx.relax.entity.Tab;
 import com.zhangcx.relax.fragment.FourFragment;
@@ -31,6 +32,8 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         initViews();
         initTabs();
+
+//        PermissionUtil.requestPerssions(this,)
     }
 
     private void initViews() {
